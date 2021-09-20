@@ -206,17 +206,18 @@
                     </a>
                 </li>
 
+                <li class="nav-header">Super Admin</li>
                 <li class="nav-item has-treeview <?php echo  $title == 'Career Manage' ? 'menu-open' : ''; ?> <?php echo  $title == 'Career Applications' ? 'menu-open' : ''; ?> ">
                     <a href="javascript:void(0)" class="nav-link <?php echo  $title == 'Career Manage' ? 'active' : ''; ?> <?php echo  $title == 'Career Applications' ? 'active' : ''; ?>">
-                        <i class="nav-icon fas fa-edit"></i>
+                        <i class="nav-icon fas fa-users"></i>
                         <p>
-                            Career
+                            Users Management
                             <i class="fas fa-angle-left right"></i>
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="<?= base_url(); ?>admin/manageCareer" class="nav-link <?php echo  $title == 'Career Manage' ? 'active' : ''; ?>">
+                            <a href="<?= base_url(); ?>admin/" class="nav-link <?php echo  $title == 'User Management' ? 'active' : ''; ?>">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Career Manage</p>
                             </a>
