@@ -31,6 +31,7 @@ class Admin extends CI_Controller {
 			$this->session->set_userdata('email', $data['loginData'][0]['email']);
 			$this->session->set_userdata('name', $data['loginData'][0]['name']);
 			$this->session->set_userdata('type', $data['loginData'][0]['type']);
+			$this->session->set_userdata('photo', $data['loginData'][0]['photo']);
 			$this->session->set_userdata('sessionStatus', '1');			
 			$this->session->set_flashdata('welcome', 'Successfully Login!');
 			redirect('Admin/index');
@@ -41,6 +42,15 @@ class Admin extends CI_Controller {
 		}
     }
 
+	/** Check Page is access by super admin or canteen management team */
+	public function checkAuthenicatedUserforCanteenManagement()
+	{
+		if(!in_array($this->session->userdata('type'),['1','2'])){
+			echo "<script>alert('Sorry! You are not allowed to access this Page');</script>";
+			$this->session->set_flashdata('error', 'Invalid access requested');
+			redirect('Admin/index','refresh');
+		}
+	}
     /** Logout */
 	public function logout()
 	{
@@ -55,6 +65,22 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/login');
 	}
 
+	/** Load Registration Page */
+	public function register()
+	{
+		$this->load->view('admin/register');
+	}
+
+	/** Load food category page */
+	public function foodCategory()
+	{
+        $this->checkUserSession();
+        $this->checkAuthenicatedUserforCanteenManagement();
+		$data['title'] = "Food Category";
+		$data['foods'] = $this->m1->get_selected_from_join_where_groupby_orderby(['id', 'category', 'photo', 'status'],'foodcategory',[],['status' => '1'],'id','DESC',[]);
+		$this->load->view('admin/foodCategory',$data);
+		
+	}
 	public function index()
 	{
         $this->checkUserSession();

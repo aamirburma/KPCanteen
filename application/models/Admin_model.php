@@ -11,9 +11,9 @@ class Admin_model extends CI_Model {
 
     public function checkLogin($userName,$password)
     {
-        $this->db->select('COUNT(*) AS Total, name, email, type');
+        $this->db->select('COUNT(*) AS Total, name, email, type, photo');
         $this->db->where("email = '". $userName ."' AND Password = '". $password ."' AND status = '1'");
-        $q = $this->db->get('tbl_admin');
+        $q = $this->db->get('admin');
         return $q->result_array();
     }
 

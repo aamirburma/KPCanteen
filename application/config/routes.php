@@ -57,3 +57,7 @@ $route['admin'] = 'Admin/index';
 $route['admin/checkLogin'] = 'Admin/checkLogin';
 $route['admin/manageCareer'] = 'Admin/manageCareer';
 $route['admin/addCareer'] = 'Admin/addCareer';
+$route['admin/register'] = 'Admin/register';
+
+
+$route['admin/food-category'] = 'Admin/foodCategory';
